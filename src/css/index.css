@@ -1,0 +1,169 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* ===== Theme variables and overrides (append only) ===== */
+
+/* default variables (light fallback) */
+:root {
+  --bg: #ffffff;
+  --text: #213547;
+  --muted: #6b7280;
+  --card-bg: #f9f9f9;
+  --accent: #646cff;
+  /* Light mode: softer tinted navbar with translucency */
+  --nav-bg: rgba(236, 242, 255, 0.85); /* indigo-50 with alpha */
+  --nav-text: #1f2937; /* slate-800 for contrast */
+  --nav-border: rgba(100,108,255,0.18);
+  --btn-bg: #f3f4f6;
+  --link: #646cff;
+  --link-hover: #535bf2;
+  --shadow: 0 2px 10px rgba(0,0,0,0.06);
+  --transition-fast: 150ms ease;
+}
+
+/* dark theme variables */
+[data-theme="dark"] {
+  --bg: #121216;
+  --text: #e6eef8;
+  --muted: #9aa7b8;
+  --card-bg: #0d1116;
+  --accent: #60a5fa;
+  /* Dark mode: glassy dark navbar */
+  --nav-bg: rgba(0, 0, 0, 0.6);
+  --nav-text: #e6eef8;
+  --nav-border: rgba(255,255,255,0.08);
+  --btn-bg: #1a1a1a;
+  --link: #8aa7ff;
+  --link-hover: #9bb8ff;
+  --shadow: 0 2px 14px rgba(0,0,0,0.45);
+}
+
+/* ensure the html element has the attribute when ThemeContext sets it */
+html[data-theme] { transition: background-color var(--transition-fast), color var(--transition-fast); }
+
+/* Override global colors (these appear after existing rules so they take precedence) */
+:root, html, body, #root {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* Links & anchors */
+a {
+  color: var(--link);
+}
+a:hover {
+  color: var(--link-hover);
+}
+
+/* Global buttons override */
+button {
+  background-color: var(--btn-bg);
+  color: var(--text);
+  transition: transform var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+/* Provide a variable-driven shadow for elements that used to rely on a hard-coded shadow */
+.navbar {
+  box-shadow: var(--shadow);
+  background-color: var(--nav-bg); /* will override previous hard-coded navbar background */
+  color: var(--nav-text);
+}
+
+/* Movie card / common card background override (if you have a .movie-card) */
+.movie-card {
+  background: var(--card-bg);
+  color: var(--text);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+/* small utility for muted text */
+.muted {
+  color: var(--muted);
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
